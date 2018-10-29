@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Title</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">
+            <h3 class="">Đăng kí</h3>
+        </div>
+        <form name="formRegister">
+            <div class="form-group">
+                <label for="">Tài khoản</label>
+                <input type="text" name="username" id="username" class="form-control" onkeyup="ipU()" placeholder="Nhập tài khoản của bạn...">
+                <!-- <div class="alert alert-danger" id="wUser">
+                </div> -->
+                <div id="wUser"></div>
+            </div>
+            <div class="form-group">
+                <label for="">Mật khẩu</label>
+                <input type="text" name="password" id="password" class="form-control" onkeyup="ipP()" placeholder="Nhập mật khẩu của bạn...">
+
+                <div id="wPass"></div>
+            </div>
+            <button type="button" class="btn" id="btn-R" onclick="register()">Đăng kí</button>
+        </form>
+    </div>
+    </div>
+    <!-- ...................... -->
+
+    <!-- .................................................................................... -->
+    <script>
+        var f = document.forms["formRegister"];
+        var user = f.username;
+        var pass = f.password;
+        var reg_user = /^([a-z0-9A-Z]{5,10})$/;
+        var reg_pass = /^([\w]{5,10})$/;
+        // var reg_email = /^([a-zA-Z0-9\.\-])+\@(([a-zA-Z0-9])+\.) + ([a-zA-Z0-9]{2,4})$/;
+        // var reg_phone = /^((09)|(01)[268]{1}+([0-9]{8})$/;
+        var errorU = document.getElementById('wUser');
+        var errorP = document.getElementById('wPass');
+
+        function register() {
+            if (user.value == "") {
+                errorU.innerHTML = "<div class='alert alert-danger'> <code><strong> !</strong></code> Tài khoản không được để trống! </div > ";
+            }
+            if (pass.value == "") {
+                errorP.innerHTML = "<div class='alert alert-danger'> <code><strong> !</strong></code> Mật khẩu không được để trống! </div > ";
+            }
+            if (!reg_user.test(user.value) && user.value != "") {
+                errorU.innerHTML = "<div class='alert alert-danger'> <code><strong> Lỗi!</strong></code> Tài khoản là các kí tự chữ hoặc số từ 5 đến 10 kí tự  </div > ";
+            }
+            if (!reg_pass.test(pass.value) && pass.value != "") {
+                errorP.innerHTML = "<div class='alert alert-danger'> <code><strong> Lỗi!</strong></code> Mật khẩu từ 5 đến 10 kí tự  </div > ";
+            }
+            if (reg_user.test(user.value) && reg_pass.test(pass.value)) {
+                alert('Đăng kí thành công');
+                window.location.href = "https://www.facebook.com/";
+                // window.open('https://www.facebook.com/'); // mở sang tab mới
+            }
+        }
+        function ipU() {
+            if (user.value != "") {
+                errorU.innerHTML = "";
+            }
+            if (!reg_user.test(user.value)) {
+                errorU.innerHTML = "<div class='alert alert-warning'> <code><strong> Lỗi!</strong></code> Tài khoản không đúng định dạng </div > ";
+            }
+            if (reg_user.test(user.value)) {
+                errorU.innerHTML = "<div class='alert alert-success'><i class='fa fa-check'></i> Tài khoản hợp lệ </div > ";
+            }
+
+        }
+        function ipP() {
+            if (pass.value != "") {
+                errorP.innerHTML = "";
+            }
+            if (!reg_pass.test(pass.value)) {
+                errorP.innerHTML = "<div class='alert alert-warning'> <code><strong> Lỗi!</strong></code> Mật khẩu không đúng định dạng </div > ";
+            }
+            if (reg_pass.test(pass.value)) {
+                errorP.innerHTML = "<div class='alert alert-success'><i class='fa fa-check'></i> Mật khẩu hợp lệ </div >";
+            }
+        }
+
+
+    </script>
+    <!-- ............................................................. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

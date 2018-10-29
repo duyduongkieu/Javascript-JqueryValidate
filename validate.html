@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="section-content">
+            <div class="title">
+                <h2>Đăng nhập</h2>
+            </div>
+            <div class="form-horizontal">
+                <form action="" name="myForm">
+                    <div class="form-group">
+                        <label for="username" class="label-control">Tài khoản</label>
+                        <div class="control">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Nhập tên tài khoản">
+                            <div id="error"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="label-control">Mật khẩu</label>
+                        <div class="control">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
+                            <div id="error"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="label-control">&nbsp;</label>
+                        <div class="control">
+                            <!-- <input type="button" value="Đăng nhập"> -->
+                            <button type="button" onclick="register()" class="btn">Đăng kí</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        var f = document.forms["myForm"];
+        var user = f.username;
+        var pass = f.password;
+        var message = document.getElementById('error');
+        var reg_user = /^([a-zA-z0-9]{5,16})$/;
+        function register() {
+            if (user.value == "") {
+                alert("Tài khoản không được bỏ trống!");
+                //message.innerHTML = "Tài khoản không được bỏ trống";
+                user.focus();//Đưa con trỏ vào input nếu nhập sai
+                return;
+            }
+            if (pass.value == "") {
+                alert("Mật khẩu không được bỏ trống!");
+                pass.focus();
+                return;
+            }
+            if (!reg_user.test(user.value)) {
+                alert("Tài khoản chỉ bao gồm chữ và số\nĐộ dài từ 8 đến 16 ký tự");
+                user.focus();
+                return;
+            }
+            if (!reg_user.test(pass.value)) {
+                alert("Mật khẩu chỉ bao gồm chữ và số\nĐộ dài từ 8 đến 16 ký tự");
+                pass.focus();
+                return;
+            }
+            if (user.value == "admin" && pass.value == "12345") {
+                alert("Đăng nhập thành công!");
+                window.location.href = "http://google.com";
+            } else {
+                alert("Sai mật khẩu hoặc tài khoản!");
+            }
+        }
+    </script>
+    <!-- ............................................................. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

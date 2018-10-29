@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="text" class="form-control" placeholder="Tên đăng nhập" id="input-name" onkeyup="validateName()">
+        <div id="labelName"></div>
+        <input type="text" class="form-control" placeholder="Mật khẩu" id="input-pw" onkeyup="validatePw()">
+        <div id="labelPw"></div>
+        <div class="btn-wrapper">
+            <button class="btn btn-next-1" type="button" onClick="ok()">Test chơi</button>
+        </div>
+    </form>
+    <script>
+        var massage, prop_location, color;
+
+        function producePrompt(massage, location, color) {
+            document.getElementById(location).innerHTML = massage;
+            document.getElementById(location).style.color = color;
+        }
+        function validateName() {
+            var name = document.getElementById("input-name").value;
+            if (name.length == 0) {
+                producePrompt("Vui lòng nhập tên!", "labelName", "blue");
+                return false;
+            }
+            if (name.match(/\d/)) {
+                producePrompt("Vui lòng kiểm tra lại tên vừa nhập!", "labelName", "red");
+                return false;
+            }
+            producePrompt("Tên hợp lệ!", "labelName", "#5ef35e");
+            return true;
+        }
+        function validatePw() {
+            var phone = document.getElementById("input-pw").value;
+            if (phone.length == 0) {
+                producePrompt("Vui lòng nhập mật khẩu", "labelPw", "red");
+                return false;
+            }
+            if (!phone.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/)) {
+                producePrompt("Vui lòng kiểm tra lại mật khẩu vừa nhập!", "labelPw", "red");
+                return false;
+            }
+            producePrompt("Mật khẩu hợp lệ!", "labelPw", "#5ef35e");
+            return true;
+        }
+        function ok() {
+            if (validateName() && validatePw()) {
+                alert("ok roi day");
+            } else {
+                alert("nhap ngu vcl");
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
